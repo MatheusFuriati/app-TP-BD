@@ -15,15 +15,21 @@ class StudentsController {
   }
 
   async update(req: Request, res: Response) {
-    res.json('update');
+    // implementar services
+
+    res.json('update Students');
   }
 
   async getSingle(req: Request, res: Response) {
-    res.json('getSingle');
+    // implementar services
+
+    res.json('getSingle Students');
   }
 
   async getAll(req: Request, res: Response) {
-    res.json('getAll');
+    // implementar services
+
+    res.json('getAll Students');
   }
 }
 

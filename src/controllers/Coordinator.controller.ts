@@ -15,15 +15,15 @@ class CoordinatorController {
   }
 
   async update(req: Request, res: Response) {
-    res.json('update');
+    res.json('update Coordinator');
   }
 
   async getSingle(req: Request, res: Response) {
-    res.json('getSingle');
+    res.json('getSingle Coordinator');
   }
 
   async getAll(req: Request, res: Response) {
-    res.json('getAll');
+    res.json('getAll Coordinator');
   }
 }
 

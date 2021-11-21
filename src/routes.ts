@@ -11,12 +11,12 @@ routes.get('/', (_, response) => response.send('Hello world'));
 
 routes.post('/students/login', new StudentsController().login);
 routes.patch('/students/update', ensureAuthenticated, new StudentsController().update);
-routes.get('/students/getAll', ensureAuthenticated, new StudentsController().getAll);
-routes.get('/students/getSingle', ensureAuthenticated, new StudentsController().getSingle);
+routes.get('/students/student', ensureAuthenticated, new StudentsController().getAll);
+routes.get('/students/student/:cpf', ensureAuthenticated, new StudentsController().getSingle);
 
-routes.post('/coordinator/login', new CoordinatorController().login);
-routes.patch('/coordinator/update', ensureAuthenticated, new CoordinatorController().update);
-routes.get('/coordinator/getAll', ensureAuthenticated, new CoordinatorController().getAll);
-routes.get('/coordinator/getSingle', ensureAuthenticated, new CoordinatorController().getSingle);
+routes.post('/coordinators/coordinator/login', new CoordinatorController().login);
+routes.patch('/coordinators/coordinator/update', ensureAuthenticated, new CoordinatorController().update);
+routes.get('/coordinators/coordinator', ensureAuthenticated, new CoordinatorController().getAll);
+routes.get('/coordinators/coordinator/:cpf', ensureAuthenticated, new CoordinatorController().getSingle);
 
 export { routes };
