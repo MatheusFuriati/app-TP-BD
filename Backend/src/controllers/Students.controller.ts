@@ -10,9 +10,14 @@ class StudentsController {
   async login(req: Request, res: Response) {
     const service = new LoginStudentsService();
     const login: TLogin = req.body;
+    console.log(login);
 
-    const isAuthenticated = await service.execute(login);
-    res.json(isAuthenticated);
+    const result = await service.execute(login);
+
+    if (result.errorCode) {
+      res.status(401).json(result);
+    }
+    res.json(result);
   }
 
   async update(req: Request, res: Response) {

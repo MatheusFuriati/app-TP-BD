@@ -7,7 +7,7 @@ function ensureAuthenticated(req, res, next) {
   next();
 }
 
-routes.get('/', (_, response) => response.send('Hello world'));
+routes.get('/', (_, response) => console.log('Hello world'));
 
 routes.post('/students/login', new StudentsController().login);
 routes.patch('/students/update', ensureAuthenticated, new StudentsController().update);
