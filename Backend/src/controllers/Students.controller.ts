@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { DataServiceStudents } from '../services/Students/dataStudents.service';
 import { LoginStudentsService } from '../services/Students/loginStudents.service';
 
 type TLogin ={
@@ -22,8 +23,14 @@ class StudentsController {
 
   async getSingle(req: Request, res: Response) {
     // implementar services
-
-    res.json('getSingle Students');
+    const { id } = req.params;
+    const service = new DataServiceStudents();
+    const result = await service.getData(id);
+    if (result instanceof Error) {
+      const { message } = result;
+      res.json({ TypeError: message });
+    }
+    res.json([{ params: id }, result]);
   }
 
   async getAll(req: Request, res: Response) {

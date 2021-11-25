@@ -7,10 +7,10 @@ type TLogin ={
 }
 class CoordinatorController {
   async login(req: Request, res: Response) {
-    const service = new LoginCoordinatorService();
+    const servicesLogin = new LoginCoordinatorService();
     const login: TLogin = req.body;
 
-    const isAuthenticated = await service.execute(login);
+    const isAuthenticated = await servicesLogin.login(login);
     res.json(isAuthenticated);
   }
 
@@ -19,7 +19,9 @@ class CoordinatorController {
   }
 
   async getSingle(req: Request, res: Response) {
-    res.json('getSingle Coordinator');
+    const { id } = req.params;
+
+    res.json([{ params: id }, { return: 'getSingle Coordinator' }]);
   }
 
   async getAll(req: Request, res: Response) {
