@@ -5,15 +5,15 @@ import { BtnDefault } from '../../components/Styled';
 
 export default function Login(props) {
   const {
-    email,
-    setEmail,
+    CPF,
+    setCPF,
     password,
     setPassword,
     confirmPassword,
     setConfirmPassword,
     login,
     registrar,
-    emailError,
+    isCPFError,
     passwordError,
     limparErros,
     limparInputs,
@@ -32,17 +32,17 @@ export default function Login(props) {
             <h1>Crie sua conta</h1>
             <form>
               <div className="form-input">
-                <label>Email</label>
+                <label>CPF</label>
                 <input
-                  type="email"
-                  name="email"
-                  placeholder="Digite seu e-mail"
+                  type="CPF"
+                  name="CPF"
+                  placeholder="Digite seu CPF"
                   required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={CPF}
+                  onChange={(e) => setCPF(e.target.value)}
                 ></input>
               </div>
-              <p className="errorMsg">{emailError}</p>
+              <p className="errorMsg">{isCPFError}</p>
               <div className="form-input">
                 <label>Senha</label>
                 <input
@@ -81,16 +81,16 @@ export default function Login(props) {
             <h1>Login</h1>
             <form>
               <div className="form-input">
-                <label>Email</label>
+                <label>CPF</label>
                 <input
-                  type="email"
-                  name="email"
+                  type="CPF"
+                  name="CPF"
                   placeholder="Digite seu e-mail"
                   required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={CPF}
+                  onChange={(e) => setCPF(e.target.value)}
                 ></input>
-                <p className="errorMsg">{emailError}</p>
+                <p className="errorMsg">{isCPFError}</p>
               </div>
               <div className="form-input">
                 <label>Senha</label>

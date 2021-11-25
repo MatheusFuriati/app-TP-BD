@@ -11,19 +11,19 @@ import './App.css';
 
 function App() {
   const [user, setUser] = useState('');
-  const [email, setEmail] = useState('');
+  const [CPF, setCPF] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
+  const [isCPFError, setCPFError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
   const limparInputs = () => {
-    setEmail('');
+    setCPF('');
     setPassword('');
   };
 
   const limparErros = () => {
-    setEmailError('');
+    setCPFError('');
     setPasswordError('');
   };
 
@@ -31,87 +31,28 @@ function App() {
     e.preventDefault();
     limparErros();
 
-    if (!email) {
-      setEmailError('Email não pode ficar vazio');
-      return false;
-    } else if (!password) {
-      setPasswordError('Senha não pode ficar vazia');
+    if (!CPF || !password) {
+      setCPFError('Um dos campos possui erro!');
       return false;
     }
 
-    // firebaseApp
-    //   .auth()
-    //   .signInWithEmailAndPassword(email, password)
-    //   .catch((err) => {
-    //     let erro = '';
-    //     switch (err.code) {
-    //       case 'auth/invalid-email':
-    //         erro = 'Email inválido.';
-    //         setEmailError(erro);
-    //         break;
-    //       case 'auth/user-disabled':
-    //         erro = 'Usuario desabilitado.';
-    //         setEmailError(erro);
-    //         break;
-    //       case 'auth/user-not-found':
-    //         erro =
-    //           'Usuario não encontrado. Caso não tenha uma conta, clique em Registre-se.';
-    //         setEmailError(erro);
-    //         break;
-    //       case 'auth/wrong-password':
-    //         erro = 'Favor verifica sua senha.';
-    //         setPasswordError(erro);
-    //         break;
-    //       default:
-    //         break;
-    //     }
-    //   });
-    const login = { username: email, password: password };
+    const login = { username: CPF, password: password };
     api
       .post('/students/login', login)
       .then((response) => {
         const { user } = response.data;
-
         setUser(user);
       })
       .catch((error) => {
         console.log(error.response.statusText);
-        setEmailError(error.response.statusText);
+        setCPFError(error.response.statusText);
       });
   };
-
-  //   const registrar = (e) => {
-  //     e.preventDefault();
-  //     limparErros();
-
-  //     if (!email) {
-  //       setEmailError('Email não pode ficar vazio');
-  //       return false;
-  //     } else if (!password) {
-  //       setPasswordError('Senha Email não pode ficar vazio');
-  //       return false;
-  //     } else if (password !== confirmPassword) {
-  //       setPasswordError('As senhas são diferentes');
-  //       return false;
-  //     }
-  //   };
 
   const logout = () => {
     //remover token do navegador
     // firebaseApp.auth().signOut();
   };
-
-  //   const authListener = () => {
-  //     firebaseApp.auth().onAuthStateChanged((user) => {
-  //       console.log(user);
-  //       if (user) {
-  //         setUser(user);
-  //         limparInputs();
-  //       } else {
-  //         setUser('');
-  //       }
-  //     });
-  //   };
 
   useEffect(() => {
     // authListener();
@@ -121,15 +62,14 @@ function App() {
   if (!user) {
     return (
       <Login
-        email={email}
-        setEmail={setEmail}
+        CPF={CPF}
+        setCPF={setCPF}
         password={password}
         setPassword={setPassword}
         confirmPassword={confirmPassword}
         setConfirmPassword={setConfirmPassword}
         login={login}
-        // registrar={registrar}
-        emailError={emailError}
+        isCPFError={isCPFError}
         passwordError={passwordError}
         limparErros={limparErros}
         limparInputs={limparInputs}

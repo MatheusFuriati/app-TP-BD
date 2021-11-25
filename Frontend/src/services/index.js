@@ -1,7 +1,8 @@
 import axios from 'axios';
+import 'dotenv-safe/config';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3331',
+  baseURL: process.env.PORT,
 });
 
 export { api };
